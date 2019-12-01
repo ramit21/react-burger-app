@@ -9,6 +9,19 @@ Planning a react app involves taking decisions on 3 fronts:
 
 In older versions of create react app, css classes were available globally. To fix this,one had to eject the project, and change the webpack configuration. This updation helped in enabling the css modules, which can then be imported and used in specific components. With the latest version of create react app, this is not required though.
 
+```
+npm run eject
+```
+
+Note: this is a one-way operation. Once you eject, you can’t go back!
+
+If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+-------------------------------
 HOC: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, but HOCs are a preferred way)
 
 {props.children} is used to refer to the contained components (See Layout.js)
@@ -35,7 +48,7 @@ To make http calls, use the Axios package by installing it as below. Axios helps
 ```
 npm install --save axios
 ```
-
+------------------
 Google out css spinners, and copy the css from any of the links returned in search result for creating you own custom spinner. Create a variable in the state object of BurgerBuilder.js to toggle the spinner when making http calls. Set the flag from function making the http call, and toggle the flag back on the promise of the http call.
 
 TODO: A flexible, generic way of handling errors, see withErrorHandler.js.
@@ -117,7 +130,7 @@ https://github.com/reduxjs/redux-thunk
 
 10. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js)
 
-11.
+
 
 
 
