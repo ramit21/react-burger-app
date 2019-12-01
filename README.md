@@ -98,24 +98,26 @@ https://github.com/zalmoxisus/redux-devtools-extension
 
 4. Import the Provider, createStore and reducer, and then setup the redux store in the index.js
 
-5. Connect the react app with Redux store. See BurgerBuilder.js. import connect, which is used to connect to redux store. It takes 2 parameters, first maps to the state variables, and the second to state handlers. The keys given in these methods are used to access reducer's state or handlers in the react app via this.pros.key 
+5. You can have multiple reducers for different states and functions, eg. the store/recucers/*.js has 2 reducers in this project. You can combine the reducers using 'combineReducer' function as in index.js. When combining reducers, you need to tell your components to point to the correct redux state slice (see BurgerBuilder.js and Checkout.js containers -> mapStateToProps -> state.REDUCERKEY.variable):
 
-6. Action Creators: You can dispatch to reducers directly from the components, or you may call action creators in the reducers (see BurgerBuilder.js). These action creators work really well with async code like calling an api and updating the redux store, but these also work with sync code as well.
+6. Connect the react app with Redux store. See BurgerBuilder.js. import connect, which is used to connect to redux store. It takes 2 parameters, first maps to the state variables, and the second to state handlers. The keys given in these methods are used to access reducer's state or handlers in the react app via this.pros.key 
 
-7. Middlewares are helper methods that are invoked when a dispatch method invokes a reducer. If configured, a middleware gets invoked before the reducer and can be used to influence the reducer invocation. For eg., a middleware can be setup for logging every time the reducer is being invoked. See index.js where applyMiddleware is imported and the middlewares are applied.
+7. Action Creators: You can dispatch to reducers directly from the components, or you may call action creators in the reducers (see BurgerBuilder.js). These action creators work really well with async code like calling an api and updating the redux store, but these also work with sync code as well.
 
-8. Redux-thunk is a library which adds a middleware to your project, so that action creators do not return the action directly, but instead returns a function which will eventually dispatch an action. This eventual dispatch part can be the async code. 
+8. Middlewares are helper methods that are invoked when a dispatch method invokes a reducer. If configured, a middleware gets invoked before the reducer and can be used to influence the reducer invocation. For eg., a middleware can be setup for logging every time the reducer is being invoked. See index.js where applyMiddleware is imported and the middlewares are applied.
 
-To setup redux-thunk, install it as below, then add it to index.js
+9. Redux-thunk is a library which adds a middleware to your project, so that action creators do not return the action directly, but instead returns a function which will eventually dispatch an action. This eventual dispatch part can be the async code. 
+
+To setup redux-thunk, install it as below, then add it to index.js. This will activate thunk for your application.
 
 ```
 npm install --save redux-thunk
 https://github.com/reduxjs/redux-thunk
 ```
 
-9. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js)
+10. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js)
 
-10.
+11.
 
 
 

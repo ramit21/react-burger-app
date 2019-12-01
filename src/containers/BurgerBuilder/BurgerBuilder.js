@@ -100,8 +100,8 @@ class BurgerBuilder extends Component {
 // Map slices of the state from Redux store that are required in this component
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice
   };
 }
 
