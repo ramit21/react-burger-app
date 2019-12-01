@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Reactjs poc - burger builder app
 
-## Available Scripts
+Planning a react app involves taking decisions on 3 fronts:
 
-In the project directory, you can run:
+1. Component Tree
+2. Application state
+3. Components (stateless) vs containers (statefull - class components using the state property or functional components with state hooks)
+-------------------
 
-### `npm start`
+In older versions of create react app, css classes were available globally. To fix this,one had to eject the project, and change the webpack configuration. This updation helped in enabling the css modules, which can then be imported and used in specific components. With the latest version of create react app, this is not required though.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+HOC: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, but HOCs are a preferred way)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+{props.children} is used to refer to the contained components (See Layout.js)
 
-### `npm test`
+Install the below package to add prop type validation (See BurgerIngredients.js)
+```
+npm install --save prop-types
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+UI folder has custom UI elements like modals, backdrop etc.
 
-### `npm run build`
+You can create modals which are custom styled divs, by using show attribute of JSX (see burgerbuilder.js)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In CSS, z-index is used to identify sits on top of which element. For example, Modal sits on top of Backdrop, and backdrop would sit on top of something else like side drawer. See the Backdrop.css, and Modal.css in this project.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+See Button.js to see how to give multiple css to a single className
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See Logo.js, as to how we import the image from its folder location and use it. This way, the webpack, when it will bundle the application, will pick the image from its location, optimize it and put it in the final destination.
 
-### `npm run eject`
+Create interim database online using Firebase (using a Realtime database). You will see a url for the Realtime database, and this is the url that needs to be hit by http calls. (See axios-orders.js). In the rules tab, set read and write to true.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To make http calls, use the Axios package by installing it as below. Axios helps create instances which refer to different urls that the application can make calls to. The axios GET and POST return promises that can then be used to process asynchronoulsy (see BurgerBuilder.js). Place orders from the app, and see success response in the console logs. Also go back to firebase db as created above, and see the collection named 'orders' created with the data as stored by you. On similar lines, you can move the ingredient prices from the hardcoded values in the BurgerBuilder.js to a collection in the database, and retrieve them via http calls.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm install --save axios
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Google out css spinners, and copy the css from any of the links returned in search result for creating you own custom spinner. Create a variable in the state object of BurgerBuilder.js to toggle the spinner when making http calls. Set the flag from function making the http call, and toggle the flag back on the promise of the http call.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+TODO: A flexible, generic way of handling errors, see withErrorHandler.js.
 
-## Learn More
+## Routing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+First install react-router-dom:
+```
+npm install --s react-router-dom
+```
+Then import BrowserRouter in the index.js file to setup routing for the project. Wrapt the App inside the BrowserRouter and render this JSX structure instead of direct App.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Then implement routing in App.js using the Route module from react-router-dom
 
-### Code Splitting
+Note the props parameter of the container component loaded by the Router module. See componentDidMount() of BurgerBuilder.js. It gets extra properties like history, location and match. Note that these properties are only available to the routed component, and not the child components inside the routed component. To achieve the same, either pass the props onto child props, or use the advance method of using withRouter, an HOC provided by react-router-dom. See the burger.js on how to configure withRouter. the console.log prints spl routing properties passed on from parent burgerbuilder component.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+To invoke the routes on some actions, you can do as below (see the Burgerbuilder.js -> placeOrderHandler() and Checkout.js as well) :
 
-### Analyzing the Bundle Size
+```
+ this.props.history.push('/checkout');
+ this.props.history.goBack();
+ this.props.history.replace('checkout/contact-data');
+```
+See BurgerBuilder.js -> [This code is now commented out, as we are now using redux to manage the statw. but the commented code shows how using query params wewe can actually pass the state onto the routed component] placeOrderHandler() on how to encode and pass the query params along with routing. These values can then be recieved using 'this.props.location.search' as done in Checkout.js -> componentDidMount()
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+You can also nest the routes. For example, from App component, there is a route to Checkout component, and from the latter, there is a route to the contactdata component. See in Checkout.js, how therelative oath of nested route is added to this.props.match.path to create the complete path.
 
-### Making a Progressive Web App
+Also see the Checkout.js, on how to pass props to the component when using routing.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+NavLink is used to remove the need of marking the active link by code. (See NavigationItem.js). No need to give the below which would have been required if we were using the <a href=''> tag:
 
-### Advanced Configuration
+```
+className={props.active ? "active" : null}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Redux
 
-### Deployment
+Redux is a 3rd party library used to mantain state as a central store. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Q. When to use Redux, when to use Component's State?
 
-### `npm run build` fails to minify
+Ans. You may share the state of a component to its child components by passing it via props. But you can't share state between components of different hierarchy. That's where Redux comes to rescue. Ideally, component specific state should be used for UI specific properties only, for eg. mantaining a loading variable for showing the spinner; or a variable to hold the value of text input field. For most of the cases, Redux should be put to use for state management. Also when using routing, you could pass the data via query params, but the cleaner way is to use redux.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Steps to setup Redux in react app:
+
+1. To use redux with react application, need to install following two packages:
+
+```
+npm install --save redux
+npm install --save react-redux   //used to connect React app with redux
+```
+
+2. Create a reducer (/store/reducer.js) that will have functions that are triggered on dispatch actions to manipulate the state. See how we distribute the objects at each level (using ...) to maintain the immutability of the old state by creating a new state at each level of the objects. Doing it at each level is necessary as ...state does not create a deep clone of the object, but a shallow copy at the outermost level object only.
+
+3. Import the Provider, createStore and reducer, and then setup the redux store in the index.js
+
+4. Connect the react app with Redux store. See BurgerBuilder.js. import connect, which is used to connect to redux store. It takes 2 parameters, first maps to the state variables, and the second to state handlers. The keys given in these methods are used to access reducer's state or handlers in the react app via this.pros.key 
+
+
+
