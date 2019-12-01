@@ -87,12 +87,36 @@ Steps to setup Redux in react app:
 npm install --save redux
 npm install --save react-redux   //used to connect React app with redux
 ```
+2. The Redux-devtools installed earlier also allows us to see the state in the debug mode. Add the devtools extension to the browser if not done previously, and then setup the devtools as given in index.js file of the project. For more infromation, see the link below. Take the devtool setup from 1.2 and add it to your store creation in the index.js
 
-2. Create a reducer (/store/reducer.js) that will have functions that are triggered on dispatch actions to manipulate the state. See how we distribute the objects at each level (using ...) to maintain the immutability of the old state by creating a new state at each level of the objects. Doing it at each level is necessary as ...state does not create a deep clone of the object, but a shallow copy at the outermost level object only.
+```
+https://github.com/zalmoxisus/redux-devtools-extension
 
-3. Import the Provider, createStore and reducer, and then setup the redux store in the index.js
+```
 
-4. Connect the react app with Redux store. See BurgerBuilder.js. import connect, which is used to connect to redux store. It takes 2 parameters, first maps to the state variables, and the second to state handlers. The keys given in these methods are used to access reducer's state or handlers in the react app via this.pros.key 
+3. Create a reducer (/store/reducers/burgerBuilder.js) that will have functions that are triggered on dispatch actions to manipulate the state. See how we distribute the objects at each level (using ...) to maintain the immutability of the old state by creating a new state at each level of the objects. Doing it at each level is necessary as ...state does not create a deep clone of the object, but a shallow copy at the outermost level object only.
+
+4. Import the Provider, createStore and reducer, and then setup the redux store in the index.js
+
+5. Connect the react app with Redux store. See BurgerBuilder.js. import connect, which is used to connect to redux store. It takes 2 parameters, first maps to the state variables, and the second to state handlers. The keys given in these methods are used to access reducer's state or handlers in the react app via this.pros.key 
+
+6. Action Creators: You can dispatch to reducers directly from the components, or you may call action creators in the reducers (see BurgerBuilder.js). These action creators work really well with async code like calling an api and updating the redux store, but these also work with sync code as well.
+
+7. Middlewares are helper methods that are invoked when a dispatch method invokes a reducer. If configured, a middleware gets invoked before the reducer and can be used to influence the reducer invocation. For eg., a middleware can be setup for logging every time the reducer is being invoked. See index.js where applyMiddleware is imported and the middlewares are applied.
+
+8. Redux-thunk is a library which adds a middleware to your project, so that action creators do not return the action directly, but instead returns a function which will eventually dispatch an action. This eventual dispatch part can be the async code. 
+
+To setup redux-thunk, install it as below, then add it to index.js
+
+```
+npm install --save redux-thunk
+https://github.com/reduxjs/redux-thunk
+```
+
+9. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js)
+
+10.
+
 
 
 

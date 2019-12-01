@@ -7,7 +7,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as burgerBuilderActionTypes from '../../store/actions/index';
 
 
 class BurgerBuilder extends Component {
@@ -19,7 +19,7 @@ class BurgerBuilder extends Component {
 
   componentDidMount () {
     console.log(this.props);
-    //THIS is a good place to make GET http call to render data on screen load
+    //THIS is a good place to make GET http call to fetch ingridents from backend
   }
 
   //This function is used to determine when to enable the Order Now button
@@ -107,8 +107,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: (ingName) => dispatch({type: actionTypes.ADD_INGREDIENTS, ingredientName : ingName}),
-    onIngredientRemoved: (ingName) => dispatch({type: actionTypes.REMOVE_INGREDIENTS, ingredientName : ingName})
+    //you can dispatch to reducers directly with arguments as below, but we will instead invoke action functions of reducers
+    /*
+    onIngredientAdded: (ingName) => dispatch({type: burgerBuilderActionTypes.ADD_INGREDIENTS, ingredientName : ingName}),
+    onIngredientRemoved: (ingName) => dispatch({type: burgerBuilderActionTypes.REMOVE_INGREDIENTS, ingredientName : ingName})
+    */
+   onIngredientAdded: (ingName) => dispatch(burgerBuilderActionTypes.addIngredient(ingName)),
+   onIngredientRemoved: (ingName) => dispatch(burgerBuilderActionTypes.removeIngredient(ingName))
   };
 }
 
