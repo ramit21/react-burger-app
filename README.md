@@ -1,5 +1,15 @@
 ## Reactjs poc - burger builder app
 
+This POC is for creating a Burger builder app using different features of Reactjs including Redux.
+
+Steps to Launch the POC:
+
+1. Create interim database online using Firebase (using a Realtime database). You will see a url for the Realtime database, and this is the url that needs to be hit by the http calls. (See axios-orders.js). In the rules tab, set read and write to true.
+
+2. Launch the poc using 'npm start'.
+
+---------------------
+## Basic theory
 Planning a react app involves taking decisions on 3 fronts:
 
 1. Component Tree
@@ -22,7 +32,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 -------------------------------
-HOC: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, but HOCs are a preferred way)
+## Some features used in this POC
+
+HOC: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, or return array of elements with unique keys, but HOCs are the preferred way)
 
 {props.children} is used to refer to the contained components (See Layout.js)
 
@@ -41,15 +53,14 @@ See Button.js to see how to give multiple css to a single className
 
 See Logo.js, as to how we import the image from its folder location and use it. This way, the webpack, when it will bundle the application, will pick the image from its location, optimize it and put it in the final destination.
 
-Create interim database online using Firebase (using a Realtime database). You will see a url for the Realtime database, and this is the url that needs to be hit by http calls. (See axios-orders.js). In the rules tab, set read and write to true.
-
+## Axios
 To make http calls, use the Axios package by installing it as below. Axios helps create instances which refer to different urls that the application can make calls to. The axios GET and POST return promises that can then be used to process asynchronoulsy (see BurgerBuilder.js). Place orders from the app, and see success response in the console logs. Also go back to firebase db as created above, and see the collection named 'orders' created with the data as stored by you. On similar lines, you can move the ingredient prices from the hardcoded values in the BurgerBuilder.js to a collection in the database, and retrieve them via http calls.
 
 ```
 npm install --save axios
 ```
 ------------------
-Google out css spinners, and copy the css from any of the links returned in search result for creating you own custom spinner. Create a variable in the state object of BurgerBuilder.js to toggle the spinner when making http calls. Set the flag from function making the http call, and toggle the flag back on the promise of the http call.
+Google out css spinners, and copy the css from any of the links returned in search result for creating you own custom spinner. Create a variable in the state object of BurgerBuilder.js (or in the Redux store) to toggle the spinner when making http calls. Set the flag from function making the http call, and toggle the flag back on the promise of the http call.
 
 TODO: A flexible, generic way of handling errors, see withErrorHandler.js.
 
@@ -59,7 +70,7 @@ First install react-router-dom:
 ```
 npm install --s react-router-dom
 ```
-Then import BrowserRouter in the index.js file to setup routing for the project. Wrapt the App inside the BrowserRouter and render this JSX structure instead of direct App.
+Then import BrowserRouter in the index.js file to setup routing for the project. Wrap the App inside the BrowserRouter and render this JSX structure instead of direct App.
 
 Then implement routing in App.js using the Route module from react-router-dom
 
@@ -72,7 +83,7 @@ To invoke the routes on some actions, you can do as below (see the Burgerbuilder
  this.props.history.goBack();
  this.props.history.replace('checkout/contact-data');
 ```
-See BurgerBuilder.js -> [This code is now commented out, as we are now using redux to manage the statw. but the commented code shows how using query params wewe can actually pass the state onto the routed component] placeOrderHandler() on how to encode and pass the query params along with routing. These values can then be recieved using 'this.props.location.search' as done in Checkout.js -> componentDidMount()
+See BurgerBuilder.js -> [This code is now commented out, as we are now using redux to manage the state, but the commented code shows how using query params we can actually pass the state onto the routed component] placeOrderHandler() on how to encode and pass the query params along with routing. These values can then be recieved using 'this.props.location.search' as done in Checkout.js -> componentDidMount()
 
 You can also nest the routes. For example, from App component, there is a route to Checkout component, and from the latter, there is a route to the contactdata component. See in Checkout.js, how therelative oath of nested route is added to this.props.match.path to create the complete path.
 
@@ -136,6 +147,7 @@ https://github.com/reduxjs/redux-thunk
 
 
 ## Testing
+
 
 
 ## Reactjs vs Angularjs
