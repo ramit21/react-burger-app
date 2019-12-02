@@ -1,2 +1,2 @@
 export {addIngredient, removeIngredient} from './burgerBuilder';
-export {} from './order';
+export {fetchOrders} from './order';
