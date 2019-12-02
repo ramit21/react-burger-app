@@ -128,10 +128,32 @@ npm install --save redux-thunk
 https://github.com/reduxjs/redux-thunk
 ```
 
-10. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js)
+10. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js/ Orders.js)
+
+
+## Authentication
 
 
 
+## Testing
 
+
+## Reactjs vs Angularjs
+
+Reactjs -> FB; Angular -> Google.
+
+Both are good for creating SPAs. Both promote the injection of HTML code inside Javascript, rather than the old way of injecting Javascript inside HTML.
+
+Reactjs is a library, while Angularjs is a framework. Being a framework, latter comes with some in built features like Routing, http, modules - lazy loading etc. for which you have to add 3rd party libraries when using those features with Redux.
+
+Being a framework, Angular comes with additional in-built features like CLI, Dependency injection, Transpiling (.ts to .js), 2-way data binding, etc.
+
+While Angular is more powerful from features perspective, and good to use for heavy web applications, Redux wins the race for prompt UI rendering due to presence of Virtual DOM.
+
+Reactjs supports server side rendering, whereas Angular supports client side rendering.
+
+Refer below for more:
+
+https://www.rishabhsoft.com/blog/reactjs-vs-angularjs
 
 
