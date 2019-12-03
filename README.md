@@ -141,6 +141,7 @@ https://github.com/reduxjs/redux-thunk
 
 10. See store/actions/index.js -> as to how group different exports in a single file, and then import the latter in the components (see BurgerBuilder.js/ Orders.js)
 
+11. Note that a screen refresh clears the redux store, so for persisting data like JWT tokens, use localStorage.
 
 ## Authentication
 
