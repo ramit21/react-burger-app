@@ -163,7 +163,7 @@ Being a framework, Angular comes with additional in-built features like CLI, Dep
 
 While Angular is more powerful from features perspective, and good to use for heavy web applications, Redux wins the race for prompt UI rendering due to presence of Virtual DOM.
 
-Reactjs supports server side rendering, whereas Angular supports client side rendering.
+Reactjs supports server side rendering, whereas Angular supports client side rendering. ie, Angular server just returns the data, and let the browser do the work of rendering the data on the HTML. Reactjs on the hand use SRR, but not the traditional way, where every request from the UI required server to render a new HTML response. React pulls the server rendered page on the initial load, and therafter lets routing and ajax take care of any data that is futher required. 
 
 Refer below for more:
 
