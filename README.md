@@ -18,7 +18,21 @@ npm install create-react-app -g
 create-react-app <my-react-app-name> --scripts-version 1.1.5
 ```
 
-**JSX**: Reactjs components return JSX which is syntactical sugar on top of HTML, ie javascript that looks like HTML. Since it is not plain HTML, some of the HTML constructs cannot be used directly. eg. use className instead of class.
+**JSX**: Reactjs components return JSX which is syntactical sugar on top of HTML, ie javascript that looks like HTML. Since it is not plain HTML, some of the HTML constructs cannot be used directly. eg. use className instead of class. You can also give conditional statements using single curly braces:
+
+```
+return (
+    <div/>
+    {
+        this.state.showData?
+                 <div>
+                    <Data val1= val2= />
+                 </div> : null
+    }
+    
+)
+
+```
 
 **Class vs Functional component and state management:**
 
