@@ -39,9 +39,9 @@ You can actually have all the conditions inside render method and use the assign
 ```
 render(){
     const data = this.state.showData?
-                 <div>
+                 (<div>
                     <Data val1= val2= />
-                 </div> : null;
+                 </div> ): null;
     return(
         <div/>
         {data}
