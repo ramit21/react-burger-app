@@ -66,6 +66,10 @@ const app = props => {
 
 -> Important difference: this.setState of components extending Compnent merges the updated fields with new values as specified in the function call, whereas setState of functional-components hooks doesnt merge anything, it simply replaces the entire state. 
 
+**Stateless vs Stateful Components**:
+
+Statefull or smart components manage state (either via component class or via state hooks), whereas stateless or dumb components do not have any state, and just render JSX based on props passed onto them by parent components. This segregation helps you to build applications in a better way. 
+
 **HOC**: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, or return array of elements with unique keys, but HOCs are the preferred way)
 
 {props.children} is used to refer to the contained components (See Layout.js)
