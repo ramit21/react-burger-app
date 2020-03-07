@@ -4,34 +4,11 @@ This POC is for creating a Burger builder app using different features of Reactj
 
 Steps to Launch the POC:
 
-1. Create interim database online using Firebase (using a Realtime database). You will see a url for the Realtime database, and this is the url that needs to be hit by the http calls. (See axios-orders.js). In the rules tab, set read and write to true.
+1. Create interim database online using Firebase (using a Realtime database). You will see a url for the Realtime database, and this is the url that needs to be hit by the http calls. (Configure it in axios-orders.js). In the rules tab, set read and write to true. Screenshot of db added in resources folder for reference.
 
 2. Launch the poc using 'npm start'.
 
----------------------
-## Basic theory
-Planning a react app involves taking decisions on 3 fronts:
 
-1. Component Tree
-2. Application state
-3. Components (stateless) vs containers (statefull - class components using the state property or functional components with state hooks)
--------------------
-
-In older versions of create react app, css classes were available globally. To fix this,one had to eject the project, and change the webpack configuration. This updation helped in enabling the css modules, which can then be imported and used in specific components. With the latest version of create react app, this is not required though.
-
-```
-npm run eject
-```
-
-Note: this is a one-way operation. Once you eject, you can’t go back!
-
-If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
--------------------------------
 ## Some features used in this POC
 
 HOC: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, or return array of elements with unique keys, but HOCs are the preferred way)
@@ -74,7 +51,7 @@ Then import BrowserRouter in the index.js file to setup routing for the project.
 
 Then implement routing in App.js using the Route module from react-router-dom
 
-Note the props parameter of the container component loaded by the Router module. See componentDidMount() of BurgerBuilder.js. It gets extra properties like history, location and match. Note that these properties are only available to the routed component, and not the child components inside the routed component. To achieve the same, either pass the props onto child props, or use the advance method of using withRouter, an HOC provided by react-router-dom. See the burger.js on how to configure withRouter. the console.log prints spl routing properties passed on from parent burgerbuilder component.
+Note the props parameter of the container component loaded by the Router module. (See componentDidMount() of BurgerBuilder.js). It gets extra properties like history, location and match. Note that these properties are only available to the routed component, and not the child components inside the routed component. To achieve the same, either pass the props onto child props, or use the advance method of using withRouter, an HOC provided by react-router-dom. See the burger.js on how to configure withRouter. the console.log prints special routing properties passed on from parent burgerbuilder component.
 
 To invoke the routes on some actions, you can do as below (see the Burgerbuilder.js -> placeOrderHandler() and Checkout.js as well) :
 
@@ -85,7 +62,7 @@ To invoke the routes on some actions, you can do as below (see the Burgerbuilder
 ```
 See BurgerBuilder.js -> [This code is now commented out, as we are now using redux to manage the state, but the commented code shows how using query params we can actually pass the state onto the routed component] placeOrderHandler() on how to encode and pass the query params along with routing. These values can then be recieved using 'this.props.location.search' as done in Checkout.js -> componentDidMount()
 
-You can also nest the routes. For example, from App component, there is a route to Checkout component, and from the latter, there is a route to the contactdata component. See in Checkout.js, how therelative oath of nested route is added to this.props.match.path to create the complete path.
+You can also nest the routes. For example, from App component, there is a route to Checkout component, and from the latter, there is a route to the contactdata component. See in Checkout.js, how the relative path of nested route is added to this.props.match.path to create the complete path.
 
 Also see the Checkout.js, on how to pass props to the component when using routing.
 
@@ -101,7 +78,7 @@ Redux is a 3rd party library used to mantain state as a central store.
 
 Q. When to use Redux, when to use Component's State?
 
-Ans. You may share the state of a component to its child components by passing it via props. But you can't share state between components of different hierarchy. That's where Redux comes to rescue. Ideally, component specific state should be used for UI specific properties only, for eg. mantaining a loading variable for showing the spinner; or a variable to hold the value of text input field. For most of the cases, Redux should be put to use for state management. Also when using routing, you could pass the data via query params, but the cleaner way is to use redux.
+Ans. You may share the state of a component to its child components by passing it via props. But you can't share state between components of different hierarchy in the component tree. That's where Redux comes to rescue. Ideally, component specific state should be used for UI specific properties only, for eg. mantaining a loading variable for showing the spinner; or a variable to hold the value of text input field. For most of the cases, Redux should be put to use for state management. Also when using routing, you could pass the data via query params, but the cleaner way is to use redux.
 
 Steps to setup Redux in react app:
 
@@ -143,11 +120,42 @@ https://github.com/reduxjs/redux-thunk
 
 11. Note that a screen refresh clears the redux store, so for persisting data like JWT tokens, use localStorage.
 
+
+## Basic theory
+Planning a react app involves taking decisions on 3 fronts:
+
+1. Component Tree
+2. Application state
+3. Components (stateless) vs containers (statefull - class components using the state property or functional components with state hooks)
+
+**CSS Eject:**
+
+In older versions of create react app, css classes were available globally. To fix this,one had to eject the project, and change the webpack configuration. This updation helped in enabling the css modules, which can then be imported and used in specific components. With the latest version of create react app, this is not required though.
+
+```
+npm run eject
+```
+
+Note: this is a one-way operation. Once you eject, you can’t go back!
+
+If you aren’t satisfied with the build tool and configuration choices, you can eject at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+-------------------------------
+
+
+
+
 ## Authentication
 
 
 
 ## Testing
+
+
 
 
 

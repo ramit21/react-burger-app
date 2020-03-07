@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 
-const INGRIDENT_PRICES = { //Global constants iven in caps
+const INGRIDENT_PRICES = { //Global constants given in caps
     salad: 0.5,
     bacon: 0.4,
     cheese: 1.3,
