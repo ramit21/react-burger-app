@@ -11,7 +11,62 @@ Steps to Launch the POC:
 
 ## Some features used in this POC
 
-HOC: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, or return array of elements with unique keys, but HOCs are the preferred way)
+**Create-react-app**: Run below commands to install create-react-app module from github to local machine, and then use it to scaffold react-applications.
+
+```
+npm install create-react-app -g
+create-react-app <my-react-app-name> --scripts-version 1.1.5
+```
+
+**JSX**: Reactjs components return JSX which is syntactical sugar on top of HTML, ie javascript that looks like HTML. Since it is not plain HTML, some of the HTML constructs cannot be used directly. eg. use className instead of class.
+
+**Class vs Functional component and state management:**
+
+If state or props change, react re-evaulates if it needs to re-render the dom that used these state/props values.
+
+Class component:
+
+```
+import {Component} from 'react';
+class App extends Component {
+    state = {
+        key1: val1,
+        key2: val2
+    }
+
+    this.setState({key1:newVal}) //to update the class state
+
+    render() {
+        return (
+            <JSX />
+        )
+    }
+}
+```
+
+Functional Compnent:
+
+```
+import {useState} from 'react';
+
+const app = props => {
+
+    const [state, setState ] = useState({
+        initial state object
+    })
+
+    //access state via state, and update via setState as defined in above destrucutring.
+
+    return(
+        <JSX />
+    )
+}
+
+```
+
+-> Important difference: this.setState of components extending Compnent merges the updated fields with new values as specified in the function call, whereas setState of functional-components hooks doesnt merge anything, it simply replaces the entire state. 
+
+**HOC**: higher order components are used just to wrap the JSX of main containers, as a render method of a class component can return a single root element. (You can also wrap the JSX with a div, or return array of elements with unique keys, but HOCs are the preferred way)
 
 {props.children} is used to refer to the contained components (See Layout.js)
 
@@ -126,12 +181,20 @@ https://github.com/reduxjs/redux-thunk
 **Testing**
 
 
+
 ## Basic theory
 Planning a react app involves taking decisions on 3 fronts:
 
 1. Component Tree
 2. Application state
 3. Components (stateless) vs containers (statefull - class components using the state property or functional components with state hooks)
+
+Components are basically pieces of your application which when combined together form your browser view.
+
+**SPA:**
+
+Single page application has only one HTML page where the content is rendered on the client. Where as on multi-page application, we have multiple HTML pages and content is rendered on the server.
+
 
 **CSS Eject:**
 
