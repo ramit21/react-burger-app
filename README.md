@@ -55,7 +55,7 @@ const app = props => {
         initial state object
     })
 
-    //access state via state, and update via setState as defined in above destrucutring.
+    //access state via state, and update via setState as defined in above destructuring.
 
     return(
         <JSX />
