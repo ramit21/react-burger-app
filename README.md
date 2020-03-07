@@ -49,11 +49,14 @@ render(){
 }
 ```
 
+**V-dom:** render() method (as in Class components) is just a suggestion to re-render the DOM, it doesn't directly re-render it. Reatjs uses virtual dom. It keeps 2 copies of the DOM: actual, and re-rendered DOM. And then it evaluates the difference between the two. Only if there are differences, then only the actual DOM is re-rendered from the v-dom.
+
+
 **Class vs Functional component and state management:**
 
 If state or props change, react re-evaulates if it needs to re-render the dom that used these state/props values.
 
-Class component:
+Class component (Below) also provide lifecycle hooks (refer screenshot in resources  folder)
 
 ```
 import {Component} from 'react';
@@ -228,6 +231,7 @@ Components are basically pieces of your application which when combined together
 
 Single page application has only one HTML page where the content is rendered on the client. Where as on multi-page application, we have multiple HTML pages and content is rendered on the server.
 
+**Radium:** Use Radium to use media queries with CSS in JSX.
 
 **CSS Eject:**
 
