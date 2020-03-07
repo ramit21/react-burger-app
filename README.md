@@ -16,6 +16,7 @@ HOC: higher order components are used just to wrap the JSX of main containers, a
 {props.children} is used to refer to the contained components (See Layout.js)
 
 Install the below package to add prop type validation (See BurgerIngredients.js)
+
 ```
 npm install --save prop-types
 ```
@@ -30,7 +31,8 @@ See Button.js to see how to give multiple css to a single className
 
 See Logo.js, as to how we import the image from its folder location and use it. This way, the webpack, when it will bundle the application, will pick the image from its location, optimize it and put it in the final destination.
 
-## Axios
+**Axios**
+
 To make http calls, use the Axios package by installing it as below. Axios helps create instances which refer to different urls that the application can make calls to. The axios GET and POST return promises that can then be used to process asynchronoulsy (see BurgerBuilder.js). Place orders from the app, and see success response in the console logs. Also go back to firebase db as created above, and see the collection named 'orders' created with the data as stored by you. On similar lines, you can move the ingredient prices from the hardcoded values in the BurgerBuilder.js to a collection in the database, and retrieve them via http calls.
 
 ```
@@ -41,9 +43,10 @@ Google out css spinners, and copy the css from any of the links returned in sear
 
 TODO: A flexible, generic way of handling errors, see withErrorHandler.js.
 
-## Routing
+**Routing**
 
 First install react-router-dom:
+
 ```
 npm install --s react-router-dom
 ```
@@ -72,7 +75,7 @@ NavLink is used to remove the need of marking the active link by code. (See Navi
 className={props.active ? "active" : null}
 ```
 
-## Redux
+**Redux**
 
 Redux is a 3rd party library used to mantain state as a central store. 
 
@@ -120,6 +123,8 @@ https://github.com/reduxjs/redux-thunk
 
 11. Note that a screen refresh clears the redux store, so for persisting data like JWT tokens, use localStorage.
 
+**Testing**
+
 
 ## Basic theory
 Planning a react app involves taking decisions on 3 fronts:
@@ -143,18 +148,6 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except eject will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
--------------------------------
-
-
-
-
-## Authentication
-
-
-
-## Testing
-
 
 
 
