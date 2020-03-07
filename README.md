@@ -34,6 +34,21 @@ return (
 
 ```
 
+You can actually have all the conditions inside render method and use the assigned variable inside the return JSX:
+
+```
+render(){
+    const data = this.state.showData?
+                 <div>
+                    <Data val1= val2= />
+                 </div> : null;
+    return(
+        <div/>
+        {data}
+    )
+}
+```
+
 **Class vs Functional component and state management:**
 
 If state or props change, react re-evaulates if it needs to re-render the dom that used these state/props values.
