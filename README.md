@@ -234,7 +234,7 @@ npm install -s enzyme react-test-renderer enzyme-adapter-react-16
 Test case examples in this project:
 1. Dumb/Functional components: NavigationItem.test.js
 2. Container components: BurgerBuilder.test.js -> Issue with containers is that they are connected with Redux. So to bypass redux, in addition to the default export at the end of the file, we also add an export in the class itself (See BurgerBuilder.js). Then this class can be directly referenced in the test case and tested just like functional components as above.
-3. Redux: 
+3. Redux: store/reducer/burgerBuilder.test.js
 
 ## Basic theory
 Planning a react app involves taking decisions on 3 fronts:
