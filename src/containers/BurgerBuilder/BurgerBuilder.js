@@ -9,8 +9,8 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import { connect } from 'react-redux';
 import * as burgerBuilderActionTypes from '../../store/actions/index';
 
-
-class BurgerBuilder extends Component {
+//Named export here is to make this component availabe for unit testing
+export class BurgerBuilder extends Component { 
 
   state = {
     purchasing: false,
