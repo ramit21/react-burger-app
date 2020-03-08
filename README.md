@@ -207,7 +207,7 @@ https://github.com/zalmoxisus/redux-devtools-extension
 
 8. Middlewares are helper methods that are invoked when a dispatch method invokes a reducer. If configured, a middleware gets invoked before the reducer and can be used to influence the reducer invocation. For eg., a middleware can be setup for logging every time the reducer is being invoked. See index.js where applyMiddleware is imported and the middlewares are applied.
 
-9. Redux-thunk is a library which adds a middleware to your project, so that action creators do not return the action directly, but instead returns a function which will eventually dispatch an action. This eventual dispatch part can be the async code. 
+9. Redux-thunk is a library which adds a middleware to your project, so that action creators do not return the action directly, but instead returns a function which will eventually dispatch an action. This eventual dispatch part can be the async code. An alternative to thunk is Redux Saga (future read).
 
 To setup redux-thunk, install it as below, then add it to index.js. This will activate thunk for your application.
 
