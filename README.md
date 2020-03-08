@@ -136,7 +136,9 @@ TODO: A flexible, generic way of handling errors, see withErrorHandler.js.
 
 **Routing**
 
-Routing in SPA is to be able to show different links even though its a single page (index.html) that is rendered on the browser. Different parts are rendered on index.html based on the router path.
+Routing in SPA is to be able to show different links even though its a single page (index.html) that is rendered on the browser. Different parts are rendered on index.html based on the router path. This is what client side rendering is all about.
+
+There is no routing when using server side rendering. For the latter, use next.js, that uses folder structure to represent the url and uses internal router to render the html output (index.js in case of React) and returns it to the browser.
 
 First install react-router-dom:
 
