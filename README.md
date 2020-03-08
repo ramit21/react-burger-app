@@ -136,6 +136,8 @@ TODO: A flexible, generic way of handling errors, see withErrorHandler.js.
 
 **Routing**
 
+Routing in SPA is to be able to show different links even though its a single page (index.html) that is rendered on the browser. Different parts are rendered on index.html based on the router path.
+
 First install react-router-dom:
 
 ```
@@ -143,11 +145,13 @@ npm install --s react-router-dom
 ```
 Then import BrowserRouter in the index.js file to setup routing for the project. Wrap the App inside the BrowserRouter and render this JSX structure instead of direct App.
 
-Then implement routing in App.js using the Route module from react-router-dom
+Then implement routing in App.js using the Route module from react-router-dom.
 
 Note the props parameter of the container component loaded by the Router module. (See componentDidMount() of BurgerBuilder.js). It gets extra properties like history, location and match. Note that these properties are only available to the routed component, and not the child components inside the routed component. To achieve the same, either pass the props onto child props, or use the advance method of using withRouter, an HOC provided by react-router-dom. See the burger.js on how to configure withRouter. the console.log prints special routing properties passed on from parent burgerbuilder component.
 
-To invoke the routes on some actions, you can do as below (see the Burgerbuilder.js -> placeOrderHandler() and Checkout.js as well) :
+Routes can be loaded lazily with the use of Suspense component provided by react 16.6 onwards. See App.js, how we lazily load the orders component. If you open the Network tab and click on Orders, you will see chunk.js file getting loaded, ie the code for Orders component being loaded lazily.
+
+To invoke the routes on some actions frm code, you can do as below (see the Burgerbuilder.js -> placeOrderHandler() and Checkout.js as well) :
 
 ```
  this.props.history.push('/checkout');
