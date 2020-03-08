@@ -98,6 +98,8 @@ const app = props => {
 
 -> Important difference: this.setState of components extending Compnent merges the updated fields with new values as specified in the function call, whereas setState of functional-components hooks doesnt merge anything, it simply replaces the entire state. 
 
+You can maintain multiple states when using useState hook.
+
 **Stateless vs Stateful Components**:
 
 Statefull or smart components manage state (either via component class or via state hooks), whereas stateless or dumb components do not have any state, and just render JSX based on props passed onto them by parent components. This segregation helps you to build applications in a better way. 
