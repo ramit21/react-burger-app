@@ -249,6 +249,10 @@ Components are basically pieces of your application which when combined together
 
 Single page application has only one HTML page where the content is rendered on the client. Where as on multi-page application, we have multiple HTML pages and content is rendered on the server.
 
+**Webpack:** Webpack is a bundler that also optimizes and transforms code. You can also create your own optimization/transformation rules. See resources folder for the webpack workflow.
+
+Run 'npm run build' to build the project into optimised production deployable module. This command creates a build folder, and we have to deploy the contents of this folder ont our build server.
+
 **Radium:** Use Radium to use media queries with CSS in JSX.
 
 **CSS Eject:**
