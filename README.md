@@ -218,9 +218,23 @@ https://github.com/reduxjs/redux-thunk
 
 11. Note that a screen refresh clears the redux store, so for persisting data like JWT tokens, use localStorage.
 
-**Testing**
+## Testing
 
+Jest is a unit testing framework and Enzyme is Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output. Enzyme helps to render components in isolation to the complete app so that components can be unit tested.
 
+1. Install below dependencies for unit testing:
+
+```
+npm install -s jest
+npm install -s enzyme react-test-renderer enzyme-adapter-react-16
+```
+
+2. run '**npm run test**' to execute the unit tests.
+
+Test case examples in this project:
+1. Dumb/Functional components: NavigationItem.test.js
+2. Container components:
+3. Redux: 
 
 ## Basic theory
 Planning a react app involves taking decisions on 3 fronts:
