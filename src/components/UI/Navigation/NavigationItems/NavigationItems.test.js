@@ -13,6 +13,8 @@ describe('Test <NavigationItems />' , () => {
         //Shallow will pick immediate DOM children (NavigationItem here),
         // and not the children of children from the entire DOM.
         const wrapper = shallow(<NavigationItems />);
+        //to pass properties to functional components, use:
+        //wrapper.setProps({key:val});
         expect(wrapper.find(NavigationItem)).toHaveLength(2);
     })
 });
