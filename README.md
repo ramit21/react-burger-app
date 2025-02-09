@@ -275,7 +275,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-
 ## Reactjs vs Angularjs
 
 Reactjs -> FB; Angular -> Google.
@@ -288,10 +287,121 @@ Being a framework, Angular comes with additional in-built features like CLI, Dep
 
 While Angular is more powerful from features perspective, and good to use for heavy web applications, Redux wins the race for prompt UI rendering due to presence of Virtual DOM.
 
+Angular has strong type checking due to typscript usage. React doesn't have any such built in support for type checking.
+
+Angular supports bi-directional bindings, while react supports only uni-directional.
+
 Reactjs supports server side rendering, whereas Angular supports client side rendering. ie, Angular server just returns the data, and let the browser do the work of rendering the data on the HTML. Reactjs on the hand use SRR, but not the traditional way, where every request from the UI required server to render a new HTML response. React pulls the server rendered page on the initial load, and therafter lets routing and ajax take care of any data that is futher required. 
 
 Refer below for more:
 
 https://www.rishabhsoft.com/blog/reactjs-vs-angularjs
 
+## Misc
+
+React concepts covered in 10 mins: https://www.youtube.com/watch?v=s2skans2dP4
+
+**React props drilling**: When you keep passing the props from parent to multiple levels of child components, the intermediate layers need to pass over the props without ever using them. This makes it harder to debug or understand the code. The solution is to use central state like Redux.
+
+(imp) **Component lifecycle**:
+1. Initialise: Component is constructed with given state and default props.
+2. Mounting: When component is added to DOM. the render method is called.
+3. Updating: When we update something and the component needs to update.
+4. Unmounting: When component is removed from DOM.
+
+With class components, we have 3 main hooks to handle these lifecycle events:
+componentDidMount(), componentDidUpdate(), componentWillUnmount()
+
+With functional components, we have 1 hook method that takes care of all 3 phases (2-4):
+useEffect(()=>{ }, [Dependencies])
+
+The dependency is optional and decides when the component will be updated again after rendering.
+
+Another hook that functional components support is useState() for setting and updating state.
+
+--
+
+Q. How do browsers read JSX?
+
+Ans. In general, browsers are not capable of reading JSX and only can read pure JavaScript. The web browsers read JSX with the help of a transpiler. Transpilers are used to convert JSX into JavaScript. The transpiler used is called Babel.
+
+Q. How are events handled in React?
+
+Ans. React provides event handlers like onChange, onclick etc. that can be added to a JSX element to handle events.
+
+Q.  What is a key in React?
+
+A “key” is a special string attribute you need to include when creating lists of elements in React. Keys are used in React to identify which items in the list are changed, updated, or deleted. In other words, we can say that keys are used to give an identity to the elements in the lists.
+
+Q. What is conditional rendering in React?
+
+Ans. Selectively rendering components based on specified conditions. eg.
+```
+{isLoggedIn == false ? <DisplayLoggedOut /> : <DisplayLoggedIn />}
+```
+
+Q. What is React Fragments?
+
+Ans. Instead of returning extraneous <div> to enclose jsx from component render/return, react provides React fragment as a cleaner solution.
+```
+<React.Fragment>  
+    <h2>Child-1</h2>   
+    <p> Child-2</p>   
+</React.Fragment> 
+```
+
+Q. What is context API? 
+
+Ans. React.createContext(). Used to pass global variables anywhere in the code. Another way to share state between components. Producer sends updates to context, and consumers read from it.
+
+Q. Write a program to create a counter with increment and decrement?
+
+Ans. 
+```
+import React, { useState } from "react";
+
+const App = () => {
+
+
+    const [counter, setCounter] = useState(0)
+
+    const handleClick1 = () => {
+
+
+        setCounter(counter + 1)
+    }
+
+    const handleClick2 = () => {
+
+        setCounter(counter - 1)
+    }
+
+    return (
+        <div>
+            <div>
+                {counter}
+            </div>
+            <div className="buttons">
+                <button onClick={handleClick1}>
+                    Increment
+                </button>
+                <button onClick={handleClick2}>
+                    Decrement
+                </button>
+            </div>
+        </div>
+    )
+}
+
+export default App
+
+```
+
+Q. What is React-Material UI?
+
+A. React Material UI is an open-source React component library, offering prebuilt components for creating React applications. Developed by Google in 2014, it’s compatible with JavaScript frameworks like Angular.js and Vue.js. Renowned for its quality designs and easy customization, it’s favored by developers for rapid development.
+
+Q. What is flux architecture in redux?
+
+A. Flux architecture in Redux is a design pattern used for managing application state in a unidirectional data flow. In this architecture, actions are dispatched to modify the store, which holds the entire application state. The store sends the updated state to the view (UI), and the cycle repeats when new actions are triggered. Redux follows this structure to ensure a predictable and maintainable state management system for large applications.
 
