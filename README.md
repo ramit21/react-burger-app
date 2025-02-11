@@ -10,6 +10,25 @@ Steps to Launch the POC:
 
 In the project that gets spinned up, there is index.html, which has a div with id 'root'. This is then loaded in index.js, which creates the react DOM root by calling the ReactDOM.createRoot(), which then renderes the <App> component. App.js is the component file, from where you start writing your application code.
 
+Pass down props from parent component to child compnent and use it render the child component. Eg. this is your Hello.js component:
+```
+ <div>
+    Hello  {props.name}
+ </div>
+```
+
+And this is how you render it in your app.js component:
+
+```
+const prop = {
+  name : "Ramit"
+ } 
+  return (
+    <div className="App">
+        <Hello name={prop.name} />
+    </div>
+  );
+```
 
 ## Some features used in this POC
 
